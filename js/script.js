@@ -52,7 +52,24 @@ const assignWeapons = (fighters, weapons) => {
     return result;
 };
 
+// Training
+const trainFighters = (fighters) => {
+    const trainedFighters = [];
+    fighters.forEach(fighter => {
+        const trainingMultiplier = getRandomNumber(1, 100);
+        trainedFighters.push({
+            ...fighter,
+            power: fighter.power * trainingMultiplier
+        });
+    });
+    return trainedFighters;
+};
+
 // Execute tournament
 console.log('FASE 1: SCELTA DELL\'ARMA');
 const armedFighters = assignWeapons(fighters, weapons);
 console.log(armedFighters);
+
+console.log('FASE 2: ALLENAMENTO');
+const trainedFighters = trainFighters(armedFighters);
+console.log(trainedFighters);
