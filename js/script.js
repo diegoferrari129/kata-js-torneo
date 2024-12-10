@@ -70,16 +70,44 @@ const qualifyFighters = (fighters) => {
     return fighters.filter(fighter => fighter.power >= 2000);
 };
 
+// Combattimento
+const fights = (qualifiedFighters) => {
+    // Aggiungo un robot se il numero di combattenti è dispari
+    if (qualifiedFighters.length % 2 !== 0) {
+        qualifiedFighters.push({ name: 'Robot', power: 4000 });
+    }
+
+    const winners = [];
+    
+    // ciclo per ogni coppia di combattenti
+    for (let i = 0; i < qualifiedFighters.length; i += 2) {
+        const fighter1 = qualifiedFighters[i];
+        const fighter2 = qualifiedFighters[i + 1];
+
+        //aggiungo il vincitore alla lista
+        if (fighter1.power > fighter2.power) {
+            winners.push(fighter1);
+        } else {
+            winners.push(fighter2);
+        }
+    }
+    
+    return winners;
+};
+
 // Execute tournament
-//milestone 1
 console.log('FASE 1: SCELTA DELL\'ARMA');
 const armedFighters = assignWeapons(fighters, weapons);
 console.log(armedFighters);
-//milestone 2
+
 console.log('FASE 2: ALLENAMENTO');
 const trainedFighters = trainFighters(armedFighters);
 console.log(trainedFighters);
-//milestone 3
+
 console.log('FASE 3: QUALIFICAZIONE');
 const qualifiedFighters = qualifyFighters(trainedFighters);
 console.log(qualifiedFighters);
+
+console.log('FASE 4: COMBATTIMENTO');
+const winners = fights(qualifiedFighters);
+console.log(winners);
