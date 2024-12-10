@@ -65,11 +65,21 @@ const trainFighters = (fighters) => {
     return trainedFighters;
 };
 
+// Qualificazione
+const qualifyFighters = (fighters) => {
+    return fighters.filter(fighter => fighter.power >= 2000);
+};
+
 // Execute tournament
+//milestone 1
 console.log('FASE 1: SCELTA DELL\'ARMA');
 const armedFighters = assignWeapons(fighters, weapons);
 console.log(armedFighters);
-
+//milestone 2
 console.log('FASE 2: ALLENAMENTO');
 const trainedFighters = trainFighters(armedFighters);
 console.log(trainedFighters);
+//milestone 3
+console.log('FASE 3: QUALIFICAZIONE');
+const qualifiedFighters = qualifyFighters(trainedFighters);
+console.log(qualifiedFighters);
